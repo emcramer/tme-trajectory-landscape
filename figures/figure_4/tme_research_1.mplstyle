@@ -1,0 +1,270 @@
+# ============================================================================
+# TME Research Matplotlib Style Sheet
+# ============================================================================
+# A clean, publication-ready style for tumor microenvironment research figures
+# 
+# Based on the visual style of Figure 4: TME State Mapping
+# 
+# Usage:
+#   import matplotlib.pyplot as plt
+#   plt.style.use('tme_research.mplstyle')
+#
+# Or combine with other styles:
+#   plt.style.use(['seaborn-v0_8-whitegrid', 'tme_research.mplstyle'])
+#
+# Color palette (TME States 1-6):
+#   State 1: '#1a535c' (Teal - Immune-rich)
+#   State 2: '#ee6c4d' (Coral)
+#   State 3: '#84a98c' (Sage)
+#   State 4: '#b8b8a8' (Gray)
+#   State 5: '#6b4f7b' (Purple)
+#   State 6: '#e6b800' (Gold - Immune-excluded)
+#
+# Author: Eric
+# Date: January 2025
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# FIGURE
+# ----------------------------------------------------------------------------
+figure.facecolor: white
+figure.edgecolor: white
+figure.dpi: 100
+figure.figsize: 10, 7
+figure.titlesize: 14
+figure.titleweight: bold
+figure.autolayout: False
+figure.constrained_layout.use: False
+
+# ----------------------------------------------------------------------------
+# FONT
+# ----------------------------------------------------------------------------
+font.family: sans-serif
+font.sans-serif: DejaVu Sans, Arial, Helvetica, Lucida Grande, Verdana, Geneva, Lucid, Avant Garde, sans-serif
+font.size: 10
+font.weight: normal
+
+# Text settings
+text.color: 0.15
+
+# ----------------------------------------------------------------------------
+# AXES
+# ----------------------------------------------------------------------------
+axes.facecolor: white
+axes.edgecolor: 0.3
+axes.linewidth: 0.8
+axes.grid: True
+axes.grid.axis: both
+axes.axisbelow: True
+axes.titlesize: 12
+axes.titleweight: bold
+axes.titlepad: 10
+axes.labelsize: 10
+axes.labelweight: normal
+axes.labelpad: 5
+axes.labelcolor: 0.15
+
+# Spines
+axes.spines.top: False
+axes.spines.right: False
+axes.spines.bottom: True
+axes.spines.left: True
+
+# Color cycle - TME state colors as primary cycle
+# Teal, Coral, Sage, Gray, Purple, Gold, then extended palette
+axes.prop_cycle: cycler('color', ['1a535c', 'ee6c4d', '84a98c', 'b8b8a8', '6b4f7b', 'e6b800', '2ecc71', 'e74c3c', '3498db', '9b59b6'])
+
+# ----------------------------------------------------------------------------
+# GRID
+# ----------------------------------------------------------------------------
+grid.color: 0.85
+grid.linestyle: -
+grid.linewidth: 0.5
+grid.alpha: 0.7
+
+# ----------------------------------------------------------------------------
+# TICKS
+# ----------------------------------------------------------------------------
+xtick.direction: out
+xtick.major.size: 4
+xtick.major.width: 0.8
+xtick.minor.size: 2
+xtick.minor.width: 0.5
+xtick.minor.visible: False
+xtick.top: False
+xtick.bottom: True
+xtick.labelsize: 9
+xtick.color: 0.3
+
+ytick.direction: out
+ytick.major.size: 4
+ytick.major.width: 0.8
+ytick.minor.size: 2
+ytick.minor.width: 0.5
+ytick.minor.visible: False
+ytick.left: True
+ytick.right: False
+ytick.labelsize: 9
+ytick.color: 0.3
+
+# ----------------------------------------------------------------------------
+# LEGEND
+# ----------------------------------------------------------------------------
+legend.frameon: True
+legend.framealpha: 0.9
+legend.facecolor: white
+legend.edgecolor: 0.8
+legend.fancybox: True
+legend.shadow: False
+legend.fontsize: 9
+legend.title_fontsize: 10
+legend.borderpad: 0.4
+legend.labelspacing: 0.5
+legend.handlelength: 1.5
+legend.handleheight: 0.7
+legend.handletextpad: 0.5
+legend.borderaxespad: 0.5
+legend.columnspacing: 1.0
+
+# ----------------------------------------------------------------------------
+# LINES
+# ----------------------------------------------------------------------------
+lines.linewidth: 1.5
+lines.linestyle: -
+lines.marker: None
+lines.markerfacecolor: auto
+lines.markeredgecolor: auto
+lines.markeredgewidth: 0.5
+lines.markersize: 6
+lines.antialiased: True
+
+# ----------------------------------------------------------------------------
+# PATCHES (bars, boxes, etc.)
+# ----------------------------------------------------------------------------
+patch.linewidth: 0.5
+patch.edgecolor: black
+patch.facecolor: 1a535c
+patch.antialiased: True
+
+# ----------------------------------------------------------------------------
+# HATCHES
+# ----------------------------------------------------------------------------
+hatch.color: 0.3
+hatch.linewidth: 0.5
+
+# ----------------------------------------------------------------------------
+# BOXPLOT
+# ----------------------------------------------------------------------------
+boxplot.notch: False
+boxplot.vertical: True
+boxplot.whiskers: 1.5
+boxplot.bootstrap: None
+boxplot.patchartist: True
+boxplot.showmeans: False
+boxplot.showcaps: True
+boxplot.showbox: True
+boxplot.showfliers: True
+boxplot.meanline: False
+
+boxplot.flierprops.color: 0.3
+boxplot.flierprops.marker: o
+boxplot.flierprops.markerfacecolor: none
+boxplot.flierprops.markeredgecolor: 0.3
+boxplot.flierprops.markeredgewidth: 0.5
+boxplot.flierprops.markersize: 4
+boxplot.flierprops.linestyle: none
+boxplot.flierprops.linewidth: 0.8
+
+boxplot.boxprops.color: 0.3
+boxplot.boxprops.linewidth: 0.8
+boxplot.boxprops.linestyle: -
+
+boxplot.whiskerprops.color: 0.3
+boxplot.whiskerprops.linewidth: 0.8
+boxplot.whiskerprops.linestyle: -
+
+boxplot.capprops.color: 0.3
+boxplot.capprops.linewidth: 0.8
+boxplot.capprops.linestyle: -
+
+boxplot.medianprops.color: black
+boxplot.medianprops.linewidth: 1.5
+boxplot.medianprops.linestyle: -
+
+boxplot.meanprops.color: black
+boxplot.meanprops.marker: D
+boxplot.meanprops.markerfacecolor: black
+boxplot.meanprops.markeredgecolor: black
+boxplot.meanprops.markersize: 4
+boxplot.meanprops.linestyle: --
+boxplot.meanprops.linewidth: 0.8
+
+# ----------------------------------------------------------------------------
+# SCATTER
+# ----------------------------------------------------------------------------
+scatter.marker: o
+scatter.edgecolors: face
+
+# ----------------------------------------------------------------------------
+# HISTOGRAM
+# ----------------------------------------------------------------------------
+hist.bins: auto
+
+# ----------------------------------------------------------------------------
+# IMAGE
+# ----------------------------------------------------------------------------
+image.cmap: viridis
+image.aspect: equal
+image.interpolation: none
+image.origin: upper
+
+# ----------------------------------------------------------------------------
+# CONTOUR
+# ----------------------------------------------------------------------------
+contour.negative_linestyle: dashed
+contour.corner_mask: True
+
+# ----------------------------------------------------------------------------
+# ERRORBAR
+# ----------------------------------------------------------------------------
+errorbar.capsize: 3
+
+# ----------------------------------------------------------------------------
+# SAVING FIGURES
+# ----------------------------------------------------------------------------
+savefig.dpi: 300
+savefig.facecolor: white
+savefig.edgecolor: white
+savefig.format: png
+savefig.bbox: tight
+savefig.pad_inches: 0.1
+savefig.transparent: False
+
+# PDF settings
+pdf.compression: 6
+pdf.fonttype: 42
+
+# SVG settings
+svg.fonttype: path
+svg.image_inline: True
+
+# PS settings
+ps.papersize: letter
+ps.useafm: False
+ps.fonttype: 3
+
+# ----------------------------------------------------------------------------
+# DATES
+# ----------------------------------------------------------------------------
+date.autoformatter.year: %Y
+date.autoformatter.month: %Y-%m
+date.autoformatter.day: %Y-%m-%d
+date.autoformatter.hour: %m-%d %H
+date.autoformatter.minute: %d %H:%M
+date.autoformatter.second: %H:%M:%S
+
+# ----------------------------------------------------------------------------
+# MATHTEXT
+# ----------------------------------------------------------------------------
+mathtext.fontset: dejavusans
+mathtext.default: regular

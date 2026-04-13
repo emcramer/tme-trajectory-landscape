@@ -1,0 +1,78 @@
+# ============================================================
+# Data files — all data is distributed via Zenodo, not Git
+# ============================================================
+
+# Tabular data
+*.csv
+*.tsv
+
+# Binary / serialized data
+*.pkl
+*.pickle
+*.npy
+*.npz
+*.h5
+*.h5ad
+*.hdf5
+*.loom
+
+# Image data
+*.tiff
+*.tif
+*.ome.tif
+
+# ============================================================
+# Figure outputs — not stored in the repo
+# ============================================================
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.svg
+*.eps
+*.eps2
+
+# ============================================================
+# Python
+# ============================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+
+# Jupyter / Marimo notebook checkpoints
+.ipynb_checkpoints/
+__marimo__/
+
+# ============================================================
+# System / IDE
+# ============================================================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ============================================================
+# Output directories (generated at runtime)
+# ============================================================
+output/
+outputs/
+
+# ============================================================
+# Exceptions — keep these tracked even though .csv is ignored
+# (use `git add -f <file>` to force-add specific files)
+# ============================================================
+# No exceptions currently; all data is on Zenodo.
