@@ -104,9 +104,7 @@ predict treatment outcomes.
 We developed a PhysiCell agent-based model (ABM) of the TNBC TME featuring
 malignant epithelial cells, CD8+ T cells (effector and exhausted states), and
 macrophages (M0, M1, M2 polarizations). By systematically exploring the ABM
-parameter space (Latin Hypercube sampling, 150 simulations), we computed
-spatial statistics at each time step and embedded the resulting trajectories in
-a reduced-dimensional state space using PCA and UMAP.
+parameter space, we computed spatial statistics at each time step and embedded the resulting trajectories in a reduced-dimensional state space using PCA and UMAP.
 
 Hierarchical clustering of the state space identified 6 discrete TME states
 and their transition dynamics. We then mapped patient ROIs from two independent
