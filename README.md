@@ -93,28 +93,6 @@ and assembled manually in Inkscape (see `FIGURE_GENERATION.md`).
 
 ---
 
-## Overview of the study
-
-Triple negative breast cancer (TNBC) is characterized by a dynamic tumor
-microenvironment (TME) whose composition and spatial organization influence
-therapeutic response. Existing patient data provide only a single static
-snapshot of TME state, limiting our ability to understand TME dynamics and
-predict treatment outcomes.
-
-We developed a PhysiCell agent-based model (ABM) of the TNBC TME featuring
-malignant epithelial cells, CD8+ T cells (effector and exhausted states), and
-macrophages (M0, M1, M2 polarizations). By systematically exploring the ABM
-parameter space, we computed spatial statistics at each time step and embedded the resulting trajectories in a reduced-dimensional state space using PCA and UMAP.
-
-Hierarchical clustering of the state space identified 6 discrete TME states
-and their transition dynamics. We then mapped patient ROIs from two independent
-TNBC cohorts — the MIBI dataset (Angelo et al., *Cell* 2018) and the NeoTRIP
-IMC dataset (Wang et al.) — onto this ABM-derived state space, enabling
-inference of TME dynamics from static tissue images and associations with
-clinical outcomes including recurrence and treatment response.
-
----
-
 ## External datasets
 
 This work uses two publicly available patient datasets:
