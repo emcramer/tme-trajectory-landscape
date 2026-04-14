@@ -53,10 +53,10 @@ python figures/figure_2/generate_figure_2.py
 **Outputs:**
 | Panel | Output path |
 |-------|-------------|
-| B | `output/figures/abm/effector_T_cell.svg` |
-| C | `output/figures/abm/exhausted_T_cell.svg` |
-| D | `output/figures/abm/malignant_epithelial_cell.svg` |
-| E | `output/figures/abm/malignant_epithelial_cell_degree_centrality.svg` |
+| B | `output/figures/abm/feature_umaps/effector_T_cell.svg` |
+| C | `output/figures/abm/feature_umaps/exhausted_T_cell.svg` |
+| D | `output/figures/abm/feature_umaps/malignant_epithelial_cell.svg` |
+| E | `output/figures/abm/feature_umaps/malignant_epithelial_cell_degree_centrality.svg` |
 | F | `output/figures/abm/abm_time_umap.svg` |
 | G | `output/figures/abm/abm_state_umap.svg` |
 | H | `output/figures/abm/simulation_trajectories_over_umap/simulation_trajectories_n3.svg` |
