@@ -72,7 +72,12 @@ output/
 outputs/
 
 # ============================================================
-# Exceptions — keep these tracked even though .csv is ignored
-# (use `git add -f <file>` to force-add specific files)
+# Exceptions — small curated datasets bundled with figure scripts
+# These are tracked in git so each figure script is self-contained.
 # ============================================================
-# No exceptions currently; all data is on Zenodo.
+
+# Figure 4 — MIBI clinical outcomes (n=19 patients; small files)
+!figures/figure_4/data/*.csv
+
+# Figure 5 — Wang/NeoTRIP trial summary data (small files)
+!figures/figure_5/data/*.csv

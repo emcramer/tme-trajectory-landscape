@@ -611,7 +611,7 @@ def create_f6_legend(fig, legend_offset: float = 0.05):
 # ============================================================================
 def create_figure_6():
     print("=" * 60)
-    print("Creating Figure 6 v12")
+    print("Creating Figure 5")
     print("=" * 60)
 
     print("\nLoading data...")
@@ -676,7 +676,7 @@ def create_figure_6():
     print("\nSaving figures...")
     os.makedirs('outputs', exist_ok=True)
     for fmt, dpi_val in [('png', 300), ('svg', None), ('pdf', None)]:
-        fname = f'outputs/figure6_main_revised.{fmt}'
+        fname = f'outputs/figure_5.{fmt}'
         print(f"  Saving {fname}...")
         save_kwargs = dict(bbox_inches='tight', facecolor='white')
         if dpi_val:
@@ -685,7 +685,7 @@ def create_figure_6():
 
     plt.close()
     print("\n" + "=" * 60)
-    print("Figure 6 v12 complete.")
+    print("Figure 5 complete.")
     print("=" * 60)
 
 
