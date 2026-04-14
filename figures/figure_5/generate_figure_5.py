@@ -51,8 +51,8 @@ plt.rcParams['xtick.labelsize'] = 10
 plt.rcParams['ytick.labelsize'] = 10
 plt.rcParams['legend.fontsize'] = 10
 plt.rcParams['svg.fonttype'] = 'none'
-plt.rcParams['text.usetex'] = True
-plt.rcParams['text.latex.preamble'] = r'\usepackage{amssymb}'
+plt.rcParams['text.usetex'] = False  # disabled: requires a full LaTeX install
+# plt.rcParams['text.latex.preamble'] = r'\usepackage{amssymb}'
 plt.rcParams['savefig.bbox'] = 'tight'
 plt.rcParams['savefig.pad_inches'] = 0.05
 
