@@ -1,8 +1,7 @@
 # Data
 
 The data files required to reproduce the manuscript figures are archived on
-Zenodo at: **[https://doi.org/ZENODO_DOI](https://doi.org/ZENODO_DOI)**
-
+Zenodo at: **[https://doi.org/10.5281/zenodo.19226009](https://doi.org/10.5281/zenodo.19226009
 > **Note:** This Zenodo link will be updated when the archive is published.
 
 ---
@@ -14,7 +13,7 @@ matches what is described below. From the repository root:
 
 ```bash
 # Download and unpack (replace URL with actual Zenodo record URL)
-wget https://zenodo.org/record/XXXXXXX/files/tme-trajectory-landscape-data.tar.gz
+wget https://zenodo.org/record/10.5281/zenodo.19226009/files/tme-trajectory-landscape-data.tar.gz
 tar -xzf tme-trajectory-landscape-data.tar.gz
 ```
 

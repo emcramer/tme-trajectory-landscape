@@ -163,7 +163,7 @@ Navigate to the **"Visualization of sampled ROIs"** section of the notebook.
 
 > **Note:** The raw IMC TIFF files (data/wang/NTPublic/) are part of the
 > original Wang et al. NeoTRIP dataset and are not redistributed here.
-> Download from [Zenodo XXX](https://doi.org/ZENODO_DOI) or directly from
+> Download from [Zenodo](https://doi.org/10.5281/zenodo.19226009) or directly from
 > the original publication's data repository.
 
 ---

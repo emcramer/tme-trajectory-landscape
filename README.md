@@ -2,13 +2,12 @@
 
 Code repository for:
 
-> **Mapping the Trajectory Landscape of the Tumor Microenvironment in Triple
-> Negative Breast Cancer Using Agent-Based Modeling**
-> Eric Cramer et al. (manuscript in preparation)
+> Tumor-immune trajectory context connects static tissue architecture to clinical outcomes. Eric M. Cramer, Randy Heiland, Heber Lima da Rocha, Daniel R. Bergman, Joe W. Gray, Gordon B. Mills, Elana J. Fertig, Paul Macklin, Laura M. Heiser, Young Hwan Chang
+bioRxiv 2026.03.26.714521; doi: https://doi.org/10.64898/2026.03.26.714521
 
 This repository contains the analysis code and figure generation scripts
 for the manuscript. Raw and processed data are archived separately on
-[Zenodo](https://doi.org/ZENODO_DOI) — see [data/README.md](data/README.md)
+[Zenodo](https://doi.org/10.5281/zenodo.19226009) (embargoed until publication) — see [data/README.md](data/README.md)
 for download and setup instructions.
 
 ---
@@ -123,7 +122,7 @@ clinical outcomes including recurrence and treatment response.
 This work uses two publicly available patient datasets:
 
 - **Angelo et al. (2018)** MIBI TNBC cohort: [doi:10.1016/j.cell.2018.08.039](https://doi.org/10.1016/j.cell.2018.08.039)
-- **Wang et al.** NeoTRIP IMC dataset: [citation TBD]
+- **Wang et al.** NeoTRIP IMC dataset: [doi:10.1038/s41586-023-06498-3](https://doi.org/10.1038/s41586-023-06498-3)
 
 ---
 
@@ -131,9 +130,9 @@ This work uses two publicly available patient datasets:
 
 If you use this code, please cite:
 
-> Cramer et al. (manuscript in preparation). *Mapping the Trajectory Landscape
-> of the Tumor Microenvironment in Triple Negative Breast Cancer Using
-> Agent-Based Modeling.*
+> Tumor-immune trajectory context connects static tissue architecture to clinical outcomes
+Eric M. Cramer, Randy Heiland, Heber Lima da Rocha, Daniel R. Bergman, Joe W. Gray, Gordon B. Mills, Elana J. Fertig, Paul Macklin, Laura M. Heiser, Young Hwan Chang
+bioRxiv 2026.03.26.714521; doi: https://doi.org/10.64898/2026.03.26.714521
 
 ---
 
