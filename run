@@ -2,18 +2,21 @@
 #
 # Master entry point for figure regeneration.
 #
-# Each figure has a self-contained orchestrator at
-#   figures/figure_<n>/generate_figure_<n>.py
-# which runs every panel script for that figure. This wrapper invokes
-# every orchestrator in turn and aggregates their outputs into
-#   outputs/figure_<n>/
-# at the repo root.
+# For each figure under figures/figure_<n>/:
+#   1. Run the figure orchestrator (generate_figure_<n>.py), which itself
+#      dispatches each panel script.
+#   2. If that orchestrator exits non-zero, fall back to invoking every
+#      generate_figure_<n>_panel_*.py in the directory directly, so that
+#      one broken panel does not block the rest. (Figures 4 and 5 are
+#      single-script and have no per-panel files; the fallback is a no-op
+#      for them.)
+#   3. Aggregate the figure's output/ or outputs/ directory into
+#      outputs/figure_<n>/ at the repo root.
 #
-# Some panels depend on raw data that is not bundled in the repo
-# (raw PhysiCell outputs for Figure 2 Panel F; raw IMC TIFFs for Figure
-# 3 panels B-IMC and D). Those panels will fail with a clear error;
-# this script logs the failure and continues so the figures whose data
-# *is* bundled still complete.
+# Some panels depend on raw data that is not bundled in the repo (raw
+# PhysiCell outputs for Figure 2 Panel F; raw IMC TIFFs for Figure 3
+# panels B-IMC and D). Those panels will fail with a clear error; this
+# script logs the failure and continues.
 #
 # Usage (from this directory or any other):
 #   bash run
@@ -32,46 +35,69 @@ echo "Results dir: ${RESULTS_DIR}"
 python --version
 echo "================================================================"
 
-run_figure() {
-    local fig="$1"
-    local script="$2"
-    local fig_dir="${BUNDLE_ROOT}/figures/${fig}"
+run_panel_fallback() {
+    # Invoked when the figure orchestrator exits non-zero. Runs every
+    # per-panel script in the figure directory directly, in lexicographic
+    # order, ignoring individual failures so the remainder still runs.
+    local fig_dir="$1"
+    local fig="$2"
 
-    echo
-    echo "=== Generating ${fig} ==="
-    if [ ! -f "${fig_dir}/${script}" ]; then
-        echo "  !! Orchestrator not found: ${fig_dir}/${script}; skipping."
+    shopt -s nullglob
+    local panels=("${fig_dir}"/generate_${fig}_panel_*.py)
+    shopt -u nullglob
+
+    if [ "${#panels[@]}" -eq 0 ]; then
+        echo "  (no panel scripts to fall back on)"
         return
     fi
 
-    (
-        cd "${fig_dir}"
-        python "${script}"
-    ) || echo "  !! ${fig} orchestrator returned non-zero; continuing."
+    echo "  fallback: running ${#panels[@]} panel script(s) directly"
+    for panel in "${panels[@]}"; do
+        local name="$(basename "${panel}")"
+        echo "  - ${name}"
+        ( cd "${fig_dir}" && python "${name}" ) \
+            || echo "    !! ${name} failed; continuing."
+    done
+}
 
+run_figure() {
+    local fig="$1"
+    local fig_dir="${BUNDLE_ROOT}/figures/${fig}"
+    local orch="generate_${fig}.py"
+
+    echo
+    echo "=== Generating ${fig} ==="
+    if [ ! -f "${fig_dir}/${orch}" ]; then
+        echo "  !! Orchestrator not found: ${fig_dir}/${orch}; skipping."
+        return
+    fi
+
+    local rc=0
+    ( cd "${fig_dir}" && python "${orch}" ) || rc=$?
+
+    if [ "${rc}" -ne 0 ]; then
+        echo "  !! ${orch} returned ${rc}; falling back to direct panel runs."
+        run_panel_fallback "${fig_dir}" "${fig}"
+    fi
+
+    # Aggregate. Per-figure orchestrators write to either output/ (figs 2,
+    # 3, 6) or outputs/ (figs 4, 5). Copy whichever exists.
     local dest="${RESULTS_DIR}/${fig}"
     mkdir -p "${dest}"
-
-    # Per-figure orchestrators write to either output/ (figs 2, 3, 6)
-    # or outputs/ (figs 4, 5). Copy whichever exists.
     for outdir in "${fig_dir}/output" "${fig_dir}/outputs"; do
         if [ -d "${outdir}" ]; then
             cp -R "${outdir}/." "${dest}/" 2>/dev/null || true
         fi
     done
 
-    # Legacy: figure_6 used to write figure_6_assembled.* at its root.
-    find "${fig_dir}" -maxdepth 1 -type f -name "figure_6_assembled.*" \
-        -exec cp {} "${dest}/" \; 2>/dev/null || true
-
-    echo "  -> Outputs copied to ${dest}"
+    echo "  -> Outputs aggregated to ${dest}"
 }
 
-run_figure figure_2 generate_figure_2.py
-run_figure figure_3 generate_figure_3.py
-run_figure figure_4 generate_figure_4.py
-run_figure figure_5 generate_figure_5.py
-run_figure figure_6 generate_figure_6.py
+run_figure figure_2
+run_figure figure_3
+run_figure figure_4
+run_figure figure_5
+run_figure figure_6
 
 echo
 echo "================================================================"
