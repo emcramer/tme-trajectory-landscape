@@ -1130,7 +1130,7 @@ def save_outputs(fig, df_merged):
     """Save figure (PNG + SVG) and merged dataset."""
     print("\nSaving outputs...")
 
-    base_name = 'figure_4_mibi_tme_clinical_outcomes_v6'
+    base_name = 'figure_4'
 
     png_path = OUTPUT_DIR / f'{base_name}.png'
     fig.savefig(png_path, dpi=DPI, bbox_inches='tight', facecolor='white')

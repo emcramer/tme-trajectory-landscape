@@ -1,5 +1,6 @@
 # ============================================================
-# Data files — all data is distributed via Zenodo, not Git
+# Data files — by default, all data is distributed via Zenodo,
+# not tracked in Git. Per-figure inputs are whitelisted below.
 # ============================================================
 
 # Tabular data
@@ -22,15 +23,20 @@
 *.ome.tif
 
 # ============================================================
-# Figure outputs — not stored in the repo
+# Figure outputs — never tracked
 # ============================================================
 *.png
 *.jpg
 *.jpeg
 *.pdf
-*.svg
 *.eps
 *.eps2
+
+# Note: *.svg is intentionally NOT globbed here. Schematic SVGs
+# checked into the repo (e.g. figure_6_panel_d_msm_schematic.svg)
+# are the only authoritative source for the panel and must be
+# tracked. Generated SVGs land in per-figure output/ directories,
+# which are ignored further down.
 
 # ============================================================
 # Python
@@ -66,18 +72,33 @@ Thumbs.db
 *.swo
 
 # ============================================================
-# Output directories (generated at runtime)
+# Output directories — never tracked
 # ============================================================
 output/
 outputs/
 
 # ============================================================
-# Exceptions — small curated datasets bundled with figure scripts
-# These are tracked in git so each figure script is self-contained.
+# Whitelist: per-figure bundled input data
+# (Anything under figures/figure_<n>/data/ is in scope unless
+# re-ignored below for size or licensing reasons.)
 # ============================================================
+!figures/figure_2/data/
+!figures/figure_2/data/**
+!figures/figure_3/data/
+!figures/figure_3/data/**
+!figures/figure_4/data/
+!figures/figure_4/data/**
+!figures/figure_5/data/
+!figures/figure_5/data/**
+!figures/figure_6/data/
+!figures/figure_6/data/**
 
-# Figure 4 — MIBI clinical outcomes (n=19 patients; small files)
-!figures/figure_4/data/*.csv
-
-# Figure 5 — Wang/NeoTRIP trial summary data (small files)
-!figures/figure_5/data/*.csv
+# ============================================================
+# Re-ignore: files >100 MB that would require Git LFS.
+# These remain in the working tree but are downloaded from
+# Zenodo rather than tracked here.
+# ============================================================
+figures/figure_2/data/abm_window_info_and_averages.csv
+figures/figure_2/data/abm_windows_clustered_with_state_label.csv
+figures/figure_3/data/mibi_roi_poisson_anndata.pkl
+figures/figure_6/data/abm_windows_clustered_with_state_label.csv

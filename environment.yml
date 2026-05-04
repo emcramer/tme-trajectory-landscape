@@ -1,15 +1,37 @@
 name: tme-trajectory-landscape
 channels:
-    - defaults
-    - conda-forge
+  - conda-forge
+  - defaults
 dependencies:
-- python>=3.8
-- anndata
-- pandas
-- numpy
-- scipy
-- networkx
-- marimo
-- matplotlib
-- squidpy
-- pip
+  - python>=3.10
+  # Core scientific stack
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - statsmodels
+  - networkx
+  # Plotting and figure generation
+  - matplotlib
+  - seaborn
+  - bokeh
+  # Imaging / IO used by Figure 3 panels
+  - tifffile
+  - scikit-image
+  - imagecodecs
+  # Single-cell / spatial omics
+  - anndata
+  - scanpy
+  - squidpy
+  # Survival analysis (Figure 4 / Figure 5)
+  - lifelines
+  # Notebook runtime — many panel scripts are marimo apps
+  - marimo
+  # Headless PNG export for Figure 2 Panel F (Bokeh -> PNG)
+  - firefox
+  - geckodriver
+  - selenium
+  - pip
+  - pip:
+      # PhysiCell simulation reader used by Figure 2 Panel F
+      - git+https://github.com/emcramer/spatialtissuepy.git

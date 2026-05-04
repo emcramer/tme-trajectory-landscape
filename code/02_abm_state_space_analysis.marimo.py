@@ -998,7 +998,7 @@ def _(
 
 
 @app.cell
-def panel6a(
+def _(
     GridSpec,
     ListedColormap,
     color_hex_codes,

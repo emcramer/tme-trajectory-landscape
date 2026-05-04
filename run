@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+#
+# Master entry point for figure regeneration.
+#
+# Each figure has a self-contained orchestrator at
+#   figures/figure_<n>/generate_figure_<n>.py
+# which runs every panel script for that figure. This wrapper invokes
+# every orchestrator in turn and aggregates their outputs into
+#   outputs/figure_<n>/
+# at the repo root.
+#
+# Some panels depend on raw data that is not bundled in the repo
+# (raw PhysiCell outputs for Figure 2 Panel F; raw IMC TIFFs for Figure
+# 3 panels B-IMC and D). Those panels will fail with a clear error;
+# this script logs the failure and continues so the figures whose data
+# *is* bundled still complete.
+#
+# Usage (from this directory or any other):
+#   bash run
+#
+
+set -uo pipefail
+
+BUNDLE_ROOT="$(cd "$(dirname "$0")" && pwd)"
+RESULTS_DIR="${BUNDLE_ROOT}/outputs"
+mkdir -p "${RESULTS_DIR}"
+
+echo "================================================================"
+echo "TME Trajectory Landscape -- figure regeneration"
+echo "Bundle root: ${BUNDLE_ROOT}"
+echo "Results dir: ${RESULTS_DIR}"
+python --version
+echo "================================================================"
+
+run_figure() {
+    local fig="$1"
+    local script="$2"
+    local fig_dir="${BUNDLE_ROOT}/figures/${fig}"
+
+    echo
+    echo "=== Generating ${fig} ==="
+    if [ ! -f "${fig_dir}/${script}" ]; then
+        echo "  !! Orchestrator not found: ${fig_dir}/${script}; skipping."
+        return
+    fi
+
+    (
+        cd "${fig_dir}"
+        python "${script}"
+    ) || echo "  !! ${fig} orchestrator returned non-zero; continuing."
+
+    local dest="${RESULTS_DIR}/${fig}"
+    mkdir -p "${dest}"
+
+    # Per-figure orchestrators write to either output/ (figs 2, 3, 6)
+    # or outputs/ (figs 4, 5). Copy whichever exists.
+    for outdir in "${fig_dir}/output" "${fig_dir}/outputs"; do
+        if [ -d "${outdir}" ]; then
+            cp -R "${outdir}/." "${dest}/" 2>/dev/null || true
+        fi
+    done
+
+    # Legacy: figure_6 used to write figure_6_assembled.* at its root.
+    find "${fig_dir}" -maxdepth 1 -type f -name "figure_6_assembled.*" \
+        -exec cp {} "${dest}/" \; 2>/dev/null || true
+
+    echo "  -> Outputs copied to ${dest}"
+}
+
+run_figure figure_2 generate_figure_2.py
+run_figure figure_3 generate_figure_3.py
+run_figure figure_4 generate_figure_4.py
+run_figure figure_5 generate_figure_5.py
+run_figure figure_6 generate_figure_6.py
+
+echo
+echo "================================================================"
+echo "Figure generation complete. Aggregated results:"
+echo "================================================================"
+ls -la "${RESULTS_DIR}"/figure_*/ 2>/dev/null || true
